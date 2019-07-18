@@ -24,7 +24,7 @@ function showPage(list, page) {
  }
  
  
- //create element function 
+ //create element function to later be used 
 const createElement = element => {
    const tag = document.createElement(element);
    return tag;
