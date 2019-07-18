@@ -9,12 +9,12 @@ FSJS project 2 - List Filter and Pagination
 const studentList = document.querySelectorAll('.student-list li')
 const listMax = 10;
 
-// Created the `showPage` function to hide all of the items in the list except for the ten you want to show.
+// Created the `showPage` function to hide all of the items in the list except for the ten you want to show (or if you have less, essentialy no more than 10)
 
 function showPage(list, page) {
-   const startIndex = page * listMax - listMax;
+   const startIndex = page * listMax - listMax;//created two variables (startIndex/endIndex) and made function dynamic with basic math
    const endIndex = page * listMax;
-   for (let i = 0; i < list.length; i++) {
+   for (let i = 0; i < list.length; i++) {//looped over the list paramater 
      if (i >= startIndex && i < endIndex) {
        list[i].style.display = "block";
      } else {
@@ -38,22 +38,22 @@ const createElement = element => {
    return list.length / 10;
  };
  
- //creates pagination function
+ //this adds the pagination links 
  function appendPageLinks(studentList) {
-   const numberOfPages = totalPages(studentList);//jumps into the total pages variable and returns how many pages need to be created 
+   const numberOfPages = totalPages(studentList);//jumps into the totalPages variable above and returns how many pages need to be created 
    const div = createElement("div");//creates the div element to style 
-   const ul = createElement("ul");//creates the ul elemnt to style 
-   div.className = "pagination";
-   document.querySelector(".page").appendChild(div);
-   div.appendChild(ul);
+   const ul = createElement("ul");//creates the ul element to style 
+   div.className = "pagination"; //container DIV element with a class name of “pagination”,
+   document.querySelector(".page").appendChild(div);// and appended to the div element with the class name of page.
+   div.appendChild(ul);//appended DOM element
 
    //creates actual links for the pages to be clicked on 
    function pageNumbers(page) {
      for (let i = 1; i <= page; i++) {
        const li = createElement("li");
-       const a = createElement("a");
-       a.href = "#";
-       li.className = "links";
+       const a = createElement("a");//Each LI element should contain an A element with an href attribute of #,
+       a.href = "#"; 
+       li.className = "links";  //and text set to the page number each link will show. First link is 1. Second link is 2. And so on.
        ul.appendChild(li);
        a.textContent = i;
        li.appendChild(a);
